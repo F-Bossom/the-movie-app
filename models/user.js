@@ -1,5 +1,19 @@
 const mongoose = require("mongoose");
 
+const movieSchema = new mongoose.Schema(
+  {
+    imdbID: {
+      type: String,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
+
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -9,6 +23,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  favouriteMovie: movieSchema
 });
 
 const User = mongoose.model("User", userSchema);

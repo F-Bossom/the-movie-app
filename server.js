@@ -5,6 +5,8 @@ const PORT = process.env.PORT || 3000;
 const morgan = require("morgan");
 const methodOverride = require("method-override");
 const authRoutes = require("./controllers/auth");
+const mediaRoutes = require("./controllers/media")
+const userRoutes = require('./controllers/user')
 const session = require("express-session");
 const MongoStore = require('connect-mongo')
 
@@ -44,6 +46,10 @@ app.use((req, res, next) => {
     res.redirect("/");
   }
 });
+
+app.use("/media", mediaRoutes)
+app.use('/users', userRoutes)
+
 
 app.get("/vip-lounge", (req, res) => {
   res.send(`Welcome to the party ${req.session.user.username}`);
